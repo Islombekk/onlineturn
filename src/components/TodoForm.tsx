@@ -1,6 +1,4 @@
 import React, { useRef } from 'react'
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
@@ -12,7 +10,6 @@ interface TodoFormProps {
 }
 
 
-
 export const TodoForm: React.FC<TodoFormProps> = (props) => {
 
     // const [title, setTitle] = useState<string>('')
@@ -22,7 +19,7 @@ export const TodoForm: React.FC<TodoFormProps> = (props) => {
     // }
     const ref = useRef<HTMLInputElement>(null)
 
-    const ref1 = useRef<HTMLInputElement>(null)
+    const ref1 = useRef<HTMLSelectElement>(null)
 
     const keyPressHandler = (event: React.KeyboardEvent) => {
         if (event.key === 'Enter') {
@@ -30,8 +27,10 @@ export const TodoForm: React.FC<TodoFormProps> = (props) => {
             ref.current!.value = ''
         }
     }
-    const [age, setAge] = React.useState<string | number>('');
+
+    const [age, setAge] = React.useState<string | string>('');
     const [open, setOpen] = React.useState(false);
+
     const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
         setAge(event.target.value as string)
         console.log(event.target.value)
@@ -72,7 +71,6 @@ export const TodoForm: React.FC<TodoFormProps> = (props) => {
                 {
                     <Select
                         ref={ref1}
-                        labelId="demo-controlled-open-select-label"
                         id="doctor"
                         open={open}
                         onClose={handleClose}
@@ -98,7 +96,6 @@ export const TodoForm: React.FC<TodoFormProps> = (props) => {
                         id="datetime"
                         type="datetime-local"
                         defaultValue="2017-05-24T10:30"
-                        className="{classes.textField}"
                         InputLabelProps={{
                             shrink: true,
                         }}
